@@ -1,0 +1,6 @@
+class ParentsController < ApplicationController
+
+
+
+
+end

@@ -10,7 +10,15 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    "Hello World"
+    erb :'index'
+  end
+
+  get '/signup' do
+    erb :signup
+  end
+
+  post '/signup' do
+    
   end
 
 end
