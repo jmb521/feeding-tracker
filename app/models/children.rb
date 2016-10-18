@@ -1,4 +1,4 @@
 class Children < ActiveRecord::Base
-  :belongs_to :family, through: :parent
+  belongs_to :parent
 
 end
