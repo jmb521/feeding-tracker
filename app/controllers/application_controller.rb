@@ -18,7 +18,23 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    @parent = Parents.new(:username => params[:username], :password => params[:password], :name => params[:name])
+    if is_logged_in?
+      redirect to '/parents/index'
+    else
+      if !params[:username].empty? && !params[:password].empty? && !params[:name].empty? && !params[:email].empty?
+        if Parent.find_by(params[:username]) == nil
+          @parent = Parents.new(:username => params[:username], :password => params[:password], :name => params[:name], :email => params[:email])
+          if @parent.save
+            @session[:id] = @parent.id
+            redirect to '/parents/index'
+          else
+            redirect to '/signup'
+        end
+      else
+        redirect to '/signup'
+      end
+    end
+
     binding.pry
 
   end
