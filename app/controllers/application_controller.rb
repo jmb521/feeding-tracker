@@ -18,7 +18,23 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    
+    @parent = Parents.new(:username => params[:username], :password => params[:password], :name => params[:name])
+    binding.pry
+
+  end
+
+
+
+
+  helpers do
+
+    def is_logged_in?
+      !!session[:user_id]
+    end
+
+    def current_user
+      Parent.find(session[:user_id])
+    end
   end
 
 end

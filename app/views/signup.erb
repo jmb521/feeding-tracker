@@ -1,21 +1,25 @@
 <form method="POST" action="/signup">
   <label for="username">Create a Username: </label>
   <br />
-  <br />
-  <input type="text" name="username">
+
+  <input type="text" name="parents[username]" id="username">
   <br />
   <br />
   <label for "password">Enter your password: </label>
   <br />
-  <br />
-  <input type="password" name="password">
+
+  <input type="password" name="parents[password]" id="password">
   <br />
   <br />
   <label for="name">Name: </label>
   <br />
+  <input type="text" name="parents[name]" id="name">
   <br />
-  <input type="text" name="name">
+  <br />
+  <label for="email">Email: </label>
+  <br />
+  <input type="text" name=parents[email] id="email">
   <br />
   <br />
-  <input type="submit" name="submit" id="submit">
+  <input type="submit" value="Submit" id="submit">
 </form>
