@@ -12,6 +12,36 @@ class ApplicationController < Sinatra::Base
   get '/' do
     erb :'index'
   end
+  get '/login' do
+    if !is_logged_in?
+      erb :login
+    else
+      redirect to '/parents'
+    end
+  end
+
+  post '/login' do
+
+    @parent = Parents.find_by(username: params[:username])
+
+      if @parent && @parent.authenticate(params[:password])
+       session[:id] = @parent.id
+       redirect to '/tweets'
+
+     else
+       redirect to '/login'
+     end
+  end
+  get '/logout' do
+    if is_logged_in?
+      session.destroy
+      redirect to '/login'
+
+    else
+        redirect to '/parents'
+    end
+  end
+
 
   get '/signup' do
     erb :signup
@@ -26,7 +56,7 @@ class ApplicationController < Sinatra::Base
           @parent = Parents.new(:username => params[:username], :password => params[:password], :name => params[:name], :email => params[:email])
           if @parent.save
             session[:id] = @parent.id
-            binding.pry
+            
             redirect to '/parents'
           else
             redirect to '/signup'
@@ -35,12 +65,9 @@ class ApplicationController < Sinatra::Base
       else
         redirect to '/signup'
       end
-
     end
 
-    get '/login' do
-      erb :login
-    end
+
   end
 
 
