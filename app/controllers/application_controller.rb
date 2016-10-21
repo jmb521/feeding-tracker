@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
 
       if @parent && @parent.authenticate(params[:password])
        session[:id] = @parent.id
-       redirect to '/tweets'
+       redirect to '/parents'
 
      else
        redirect to '/login'
@@ -56,7 +56,7 @@ class ApplicationController < Sinatra::Base
           @parent = Parents.new(:username => params[:username], :password => params[:password], :name => params[:name], :email => params[:email])
           if @parent.save
             session[:id] = @parent.id
-            
+
             redirect to '/parents'
           else
             redirect to '/signup'
@@ -83,7 +83,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      Parent.find(session[:id])
+      Parents.find(session[:id])
     end
   end
 

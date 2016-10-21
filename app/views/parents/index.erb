@@ -1,8 +1,3 @@
-<h1> Welcome <%=@parent.name%></h1>
+<h1>Welcome <%=@parent.name%></h1>
 
-<form action="/parents/add_child" method="POST">
-  <label for="child_name">Child Name: </label>
-  <input type="text" name="child[][name]" id="child_name">
-  <br />
-  <input type="submit" value="Add Child" id="add_child">
-</form>
+<a href="/children/add_child">Add a child</a>
