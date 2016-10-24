@@ -1,3 +1,9 @@
 <h1>Welcome <%=@parent.name%></h1>
 
 <a href="/children/add_child">Add a child</a>
+
+
+<%@children.each do |child|%>
+  <li><%=child.child_name%></li>
+
+<%end%>
