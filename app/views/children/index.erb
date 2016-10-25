@@ -1,1 +1,10 @@
-<h1>this is a test</h1>
+
+<%=@children.child_name%>
+<br />
+<br />
+<%=@children.last_feeding%>
+<br />
+<form action="/children/:id/add_feeding" method="POST">
+  <input type="hidden" name="current_time" value="Time.now.strftime("%m/%d/%Y %H:%M")">
+  <input type="submit" value="Feeding time right now">
+</form>
