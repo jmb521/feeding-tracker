@@ -33,9 +33,9 @@ class ChildrensController < ApplicationController
   post '/children/:id/add_feeding' do
     if is_logged_in?
       @children = Children.find_by_id(params[:id])
-      binding.pry
 
-      @children.last_feeding = params[:add_feeding]
+      @children.last_feeding = params[:current_time]
+      binding.pry
     else
       redirect to '/login'
     end
