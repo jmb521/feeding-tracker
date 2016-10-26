@@ -1,0 +1,12 @@
+
+
+<form method="POST" action="/children/<%=@children.id%>">
+  <input type="hidden" name="_method" value="PATCH">
+  <label for="name">Child's Name</label>
+  <br />
+  <br />
+  <input type='text' name="children[child_name]" name="name" value="<%=@children.child_name%>">
+  <br />
+  <br />
+  <input type="submit" value="Update">
+</form>

@@ -41,4 +41,25 @@ class ChildrensController < ApplicationController
     end
 
   end
+
+  get '/children/:id/edit' do
+    @children = Children.find_by_id(params[:id])
+    erb :'/children/edit'
+  end
+
+  patch '/children/:id' do
+    if is_logged_in?
+      @children = Children.find_by_id(params[:id])
+      @children.update(params[:children])
+      @children.save
+      redirect to '/parents'
+    else
+      redirect to '/login'
+    end
+  end
+
+
+  get '/children/:id/delete' do
+    
+  end
 end

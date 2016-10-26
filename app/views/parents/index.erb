@@ -4,6 +4,6 @@
 
 
 <%@children.each do |child|%>
-  <li><a href="/children/<%=child.id%>"><%=child.child_name%></a></li>
+  <p><a href="/children/<%=child.id%>"><%=child.child_name%></a>   <a href="/children/<%=child.id%>/edit">Edit</a></p>
 
 <%end%>
