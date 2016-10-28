@@ -1,12 +1,6 @@
 class Children < ActiveRecord::Base
   belongs_to :parent
-  attr_accessor :name, :last_feeding
-  CHILDREN = []
+  has_many :parents, through: :parents_children
 
-  # def initialize(args)
-  #   @name = args[:name]
-  #   @last_feeding = args[:last_feeding]
-  #   CHILDREN << self
-  # end
 
 end

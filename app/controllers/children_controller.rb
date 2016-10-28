@@ -4,7 +4,7 @@ class ChildrensController < ApplicationController
 
   get '/children/add_child' do
 
-    erb :'/add_children'
+    erb :'/children/add_children'
 
   end
   post '/children/add_child' do
@@ -65,6 +65,7 @@ class ChildrensController < ApplicationController
     if is_logged_in?
       @children = Children.find_by_id(params[:id])
       @children.delete
+      @parent = Parent.find_by_id(session[:id])
       redirect("/parents/#{@parent.id}")
     else
       redirect to '/login'
