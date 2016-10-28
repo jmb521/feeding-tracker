@@ -16,7 +16,7 @@ class ChildrensController < ApplicationController
          @parent.child_ids = @child.id
 
 
-         redirect to '/parents'
+         redirect("/parents/#{@parent.id}")
        end
     end
   end
@@ -34,8 +34,10 @@ class ChildrensController < ApplicationController
     if is_logged_in?
       @children = Children.find_by_id(params[:id])
 
-      @children.last_feeding = params[:current_time]
+      @children.update(params[:children])
+      @children.save
       binding.pry
+      redirect to '/children/:id'
     else
       redirect to '/login'
     end
@@ -52,14 +54,21 @@ class ChildrensController < ApplicationController
       @children = Children.find_by_id(params[:id])
       @children.update(params[:children])
       @children.save
-      redirect to '/parents'
+      redirect("/parents/#{@parent.id}")
     else
       redirect to '/login'
     end
   end
 
 
-  get '/children/:id/delete' do
-    
+  delete '/children/:id/delete' do
+    if is_logged_in?
+      @children = Children.find_by_id(params[:id])
+      @children.delete
+      redirect("/parents/#{@parent.id}")
+    else
+      redirect to '/login'
+    end
   end
+
 end

@@ -1,9 +1,28 @@
 <h1>Welcome <%=@parent.name%></h1>
+<br />
+<br />
+<h4>Add a family name to share feeding information with other caretakers</h4>
+<form method="post" action="/family/add_name">
+  <label for="family_name">Family Name: </label>
+  <input type="text" name="family[name]" id="family_name">
+  <input type="submit" value="Add Family Name">
+</form
+<br />
 
 <a href="/children/add_child">Add a child</a>
-
-
+<br />
 <%@children.each do |child|%>
-  <p><a href="/children/<%=child.id%>"><%=child.child_name%></a>   <a href="/children/<%=child.id%>/edit">Edit</a></p>
+<div style="float: left; width: auto; height: auto; padding: 10px; text-align: center;">
+
+  <p><a href="/children/<%=child.id%>"><%=child.child_name%></a>
+    <br />
+    <br />
+    <a href="/children/<%=child.id%>/edit"><button type="button">EDIT</button></a>
+    <form action="/children/<%=child.id%>/delete" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type="submit" value="DELETE">
+      </form>
+  </p>
+</div>
 
 <%end%>

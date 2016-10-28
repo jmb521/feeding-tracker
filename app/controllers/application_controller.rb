@@ -16,7 +16,7 @@ class ApplicationController < Sinatra::Base
     if !is_logged_in?
       erb :login
     else
-      redirect to '/parents'
+      redirect to '/parents/:id'
     end
   end
 
@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
 
       if @parent && @parent.authenticate(params[:password])
        session[:id] = @parent.id
-       redirect to '/parents'
+       redirect to '/parents/:id'
 
      else
        redirect to '/login'
@@ -38,7 +38,7 @@ class ApplicationController < Sinatra::Base
       redirect to '/login'
 
     else
-        redirect to '/parents'
+        redirect to '/parents/:id'
     end
   end
 
@@ -48,16 +48,14 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/signup' do
-    if is_logged_in?
-      redirect to '/parents'
-    else
+    if !is_logged_in?
       if !params[:username].empty? && !params[:password].empty? && !params[:name].empty? && !params[:email].empty?
 
           @parent = Parents.new(:username => params[:username], :password => params[:password], :name => params[:name], :email => params[:email])
           if @parent.save
             session[:id] = @parent.id
 
-            redirect to '/parents'
+            redirect("/parents/#{@parent.id}")
           else
             redirect to '/signup'
           end
@@ -65,6 +63,9 @@ class ApplicationController < Sinatra::Base
       else
         redirect to '/signup'
       end
+    else
+      redirect("/parents/#{@parent.id}")
+      
     end
 
 
