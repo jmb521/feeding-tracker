@@ -7,5 +7,4 @@ end
 use Rack::MethodOverride
 use ParentsController
 use ChildrensController
-use FamilyController
 run ApplicationController

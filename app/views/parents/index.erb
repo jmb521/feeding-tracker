@@ -1,14 +1,6 @@
 <h1>Welcome <%=@parent.name%></h1>
 <br />
 <br />
-<h4>Add a family name to share feeding information with other caretakers</h4>
-<form method="post" action="/family/add_name">
-  <label for="family_name">Family Name: </label>
-  <input type="text" name="family[name]" id="family_name">
-  <input type="submit" value="Add Family Name">
-</form
-<br />
-
 <a href="/children/add_child">Add a child</a>
 <br />
 <%@children.each do |child|%>

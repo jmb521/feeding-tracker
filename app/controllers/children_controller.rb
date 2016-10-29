@@ -12,11 +12,12 @@ class ChildrensController < ApplicationController
       @child = Children.new(:child_name => params[:child][:name])
 
        if @child.save
-         @parent = Parents.find_by_id(session[:id])
-         @parent.child_ids = @child.id
+         @parent = current_user
+         
+         @parent.child_id = @child.id
 
 
-         redirect("/parents/#{@parent.id}")
+         redirect to "/parents/#{current_user.id}"
        end
     end
   end
@@ -54,7 +55,7 @@ class ChildrensController < ApplicationController
       @children = Children.find_by_id(params[:id])
       @children.update(params[:children])
       @children.save
-      redirect("/parents/#{@parent.id}")
+      redirect to "/parents/#{current_user.id}"
     else
       redirect to '/login'
     end
@@ -64,8 +65,9 @@ class ChildrensController < ApplicationController
   delete '/children/:id/delete' do
     if is_logged_in?
       @children = Children.find_by_id(params[:id])
+
       @children.delete
-      @parent = Parent.find_by_id(session[:id])
+      @parent = current_user
       redirect("/parents/#{@parent.id}")
     else
       redirect to '/login'
