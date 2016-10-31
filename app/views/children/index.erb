@@ -2,9 +2,9 @@
 <%=@children.child_name%>
 <br />
 <br />
-<%=@children.last_feeding%>
+
 <br />
 <form action="/children/<%=@children.id%>/add_feeding" method="POST">
-  <input type="hidden" name="children[last_feeding]" value="<% Time.now %>">
+  <input type="datetime-local" name="feeding">
   <input type="submit" value="Feeding time right now">
 </form>

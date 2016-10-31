@@ -56,7 +56,7 @@ class ApplicationController < Sinatra::Base
           if @parent.save
             # session[:id] = @parent.id
 
-            redirect to "/parents/:id"
+            redirect to "/parents/#{@parent.id}"
           else
             redirect to '/signup'
           end
@@ -65,7 +65,7 @@ class ApplicationController < Sinatra::Base
         redirect to '/signup'
       end
     else
-      redirect to "/parents/:id"
+      redirect to "/signup"
 
     end
 

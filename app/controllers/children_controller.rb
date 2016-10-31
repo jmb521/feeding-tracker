@@ -13,7 +13,7 @@ class ChildrensController < ApplicationController
 
        if @child.save
          @parent = current_user
-         
+
          @parent.child_id = @child.id
 
 
@@ -35,10 +35,10 @@ class ChildrensController < ApplicationController
     if is_logged_in?
       @children = Children.find_by_id(params[:id])
 
-      @children.update(params[:children])
-      @children.save
       binding.pry
-      redirect to '/children/:id'
+      @children.feedings << Feedings.create(params[:feeding])
+      @children.save
+      redirect to "/children/#{@children.id}"
     else
       redirect to '/login'
     end
@@ -46,8 +46,12 @@ class ChildrensController < ApplicationController
   end
 
   get '/children/:id/edit' do
-    @children = Children.find_by_id(params[:id])
-    erb :'/children/edit'
+    if is_logged_in
+      @children = Children.find_by_id(params[:id])
+      erb :'/children/edit'
+    else
+      redirect to '/login'
+    end
   end
 
   patch '/children/:id' do

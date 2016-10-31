@@ -5,7 +5,7 @@ class ParentsController < ApplicationController
       @parent = Parents.find_by_id(session[:id])
 
       @children = Children.all
-
+      
 
       erb :'/parents/index'
           # binding.pry
