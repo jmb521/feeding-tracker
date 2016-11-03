@@ -4,7 +4,7 @@ class ChildrensController < ApplicationController
 
 
   get '/children/add_child' do
-
+    @parent = current_user
     erb :'/children/add_children'
 
   end
@@ -23,7 +23,7 @@ class ChildrensController < ApplicationController
   get '/children/:id' do
     if is_logged_in?
       @children = Children.find_by_id(params[:id])
-
+      @parent = current_user
 
       erb :'/children/index'
     else

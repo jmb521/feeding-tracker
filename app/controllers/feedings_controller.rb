@@ -5,7 +5,7 @@ class FeedingsController < ApplicationController
     if is_logged_in?
       @feeding = Feeding.find_by_id(params[:id])
       @parent = current_user
-      @children_feeding = ChildrenFeeding.find_by(feeding_id: @feedings.id)
+      @children = ChildrenFeeding.find_by(feeding_id: @feeding.id)
       erb :'/feedings/edit'
 
     else
