@@ -1,10 +1,22 @@
-
+<p><a href="/logout">Log Out</a></p>
 <%=@children.child_name%>
 <br />
 <br />
 
+<%@children.feedings.each do |feeding|%>
+  <p><%=feeding.feedings%>
+
+    <br />
+    <br />
+    <a href="/feedings/<%=feeding.id%>/edit"><button type="button">EDIT</button></a>
+    <form action="/feedings/<%=feeding.id%>/delete" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <input type="submit" value="DELETE">
+    </form>
+  </p>
+<%end%>
 <br />
 <form action="/children/<%=@children.id%>/add_feeding" method="POST">
-  <input type="datetime-local" name="feedings">
-  <input type="submit" value="Feeding time right now">
+  <input type="datetime-local" name="feeding[feedings]">
+  <input type="submit" value="Feeding time">
 </form>

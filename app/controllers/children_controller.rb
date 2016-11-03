@@ -34,9 +34,7 @@ class ChildrensController < ApplicationController
   post '/children/:id/add_feeding' do
     if is_logged_in?
       @children = Children.find_by_id(params[:id])
-      @children.feedings.create(feedings: params[:children_feeding][:feedings], children_id: params[:children_feedings][:id])
-
-      binding.pry
+      @children.feedings.create(params[:feeding])
       @children.save
       redirect to "/children/#{@children.id}"
     else

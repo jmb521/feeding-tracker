@@ -9,4 +9,5 @@ end
 use Rack::MethodOverride
 use ParentsController
 use ChildrensController
+use FeedingsController
 run ApplicationController
