@@ -3,7 +3,7 @@
 <br />
 <a href="/children/add_child">Add a child</a>
 <br />
-<%@children.each do |child|%>
+<%@parent.children.each do |child|%>
 <div style="float: left; width: auto; height: auto; padding: 10px; text-align: center;">
 
   <p><a href="/children/<%=child.id%>"><%=child.child_name%></a>
