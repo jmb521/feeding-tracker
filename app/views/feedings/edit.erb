@@ -1,0 +1,17 @@
+<ul>
+  <li><a href="/parents/<%=@parents.id%>">Parents Console</a></li>
+  <li><a href="/children/<%=@children.id%>">Children Console</a></li>
+  <li><a href="/logout">Log Out</a></li>
+</ul>
+<br />
+<br />
+<p><span style="font-weight: bold; font-size: 14pt;">Time being edited: </span><%=@feeding.feedings%></p>
+
+<form method="POST" action="/feedings/<%=@feeding.id%>">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="datetime-local" name="feeding[feedings]" value="@feedings.feeding" id="feeding">
+
+  <br />
+  <br />
+  <input type="submit" value="Update">
+</form>
