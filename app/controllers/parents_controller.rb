@@ -2,10 +2,8 @@ class ParentsController < ApplicationController
 
   get '/parents/:id' do
     if is_logged_in?
-      @parent = Parents.find_by_id(session[:id])
-
+      @parent = current_user
       @children = Children.all
-      
 
       erb :'/parents/index'
           # binding.pry

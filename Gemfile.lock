@@ -24,6 +24,8 @@ GEM
       method_source (~> 0.8.1)
       slop (~> 3.4)
     rack (1.6.4)
+    rack-flash3 (1.0.5)
+      rack
     rack-protection (1.5.3)
       rack
     rake (11.3.0)
@@ -51,6 +53,7 @@ DEPENDENCIES
   activerecord
   bcrypt
   pry
+  rack-flash3
   rake
   require_all
   shotgun
@@ -59,4 +62,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   1.13.2
+   1.13.6

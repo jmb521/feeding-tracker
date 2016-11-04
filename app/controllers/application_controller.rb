@@ -1,14 +1,17 @@
-# require './config/environment'
+
 require 'sinatra'
+require 'rack-flash'
 class ApplicationController < Sinatra::Base
+  use Rack::Flash
 
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+
     set :session_secret, "Feed the babies"
   end
-  
+
   get '/' do
     erb :'index'
   end
@@ -36,7 +39,7 @@ class ApplicationController < Sinatra::Base
   get '/logout' do
     if is_logged_in?
       session.destroy
-      redirect to '/login'
+      redirect to '/'
 
     else
         redirect to "/parents/#{@parent.id}"
@@ -50,16 +53,20 @@ class ApplicationController < Sinatra::Base
 
   post '/signup' do
     if !is_logged_in?
-      if !params[:username].empty? && !params[:password].empty? && !params[:name].empty? && !params[:email].empty?
-
+      if !params[:username].empty? && !params[:password].empty? && !params[:name].empty? && !params[:email].empty? && !params[:password_verify].empty?
+        if params[:password] == params[:password_verify]
           @parent = Parents.new(:username => params[:username], :password => params[:password], :name => params[:name], :email => params[:email])
           if @parent.save
-            # session[:id] = @parent.id
+            session[:id] = @parent.id
 
             redirect to "/parents/#{@parent.id}"
           else
             redirect to '/signup'
           end
+        else
+          flash[:message] = "Passwords do not match"
+          redirect to '/signup'
+        end
 
       else
         redirect to '/signup'
