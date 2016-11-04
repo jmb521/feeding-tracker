@@ -13,3 +13,6 @@ Feedings belongs to children
 
 ParentsChildren has many parents and has many children
 ChildrenFeedings has many feedings and has many children
+
+
+Licensed under the MIT License. See license.MD for details.
