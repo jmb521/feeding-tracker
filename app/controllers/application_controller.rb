@@ -26,7 +26,7 @@ class ApplicationController < Sinatra::Base
 
   post '/login' do
 
-    @parent = Parents.find_by(username: params[:username])
+    @parent = Parent.find_by(username: params[:username])
 
       if @parent && @parent.authenticate(params[:password])
        session[:id] = @parent.id
@@ -55,7 +55,7 @@ class ApplicationController < Sinatra::Base
     if !is_logged_in?
       if !params[:username].empty? && !params[:password].empty? && !params[:name].empty? && !params[:email].empty? && !params[:password_verify].empty?
         if params[:password] == params[:password_verify]
-          @parent = Parents.new(:username => params[:username], :password => params[:password], :name => params[:name], :email => params[:email])
+          @parent = Parent.new(:username => params[:username], :password => params[:password], :name => params[:name], :email => params[:email])
           if @parent.save
             session[:id] = @parent.id
 
@@ -88,7 +88,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def current_user
-      Parents.find(session[:id])
+      Parent.find(session[:id])
     end
   end
 

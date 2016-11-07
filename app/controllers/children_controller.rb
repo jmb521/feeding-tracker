@@ -45,6 +45,7 @@ class ChildrensController < ApplicationController
 
   get '/children/:id/edit' do
     if is_logged_in?
+      @parent = current_user
       @children = Children.find_by_id(params[:id])
       erb :'/children/edit'
     else
