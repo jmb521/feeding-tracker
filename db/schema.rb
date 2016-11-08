@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103052459) do
+ActiveRecord::Schema.define(version: 20161108023547) do
 
   create_table "children", force: :cascade do |t|
-    t.string "child_name"
-    t.string "feeding_id"
+    t.string  "child_name"
+    t.integer "parents_id"
   end
 
   create_table "children_feedings", force: :cascade do |t|
@@ -33,11 +33,6 @@ ActiveRecord::Schema.define(version: 20161103052459) do
     t.string  "password_digest"
     t.string  "email"
     t.integer "children_id"
-  end
-
-  create_table "parents_children", force: :cascade do |t|
-    t.integer "children_id"
-    t.integer "parents_id"
   end
 
 end

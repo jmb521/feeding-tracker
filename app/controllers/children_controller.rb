@@ -11,7 +11,7 @@ class ChildrensController < ApplicationController
   post '/children/add_child' do
     if is_logged_in?
       @parent = current_user
-      @parent.children.create(params[:children])
+      @parent.children = Children.create(params[:children])
 
 
 
