@@ -5,7 +5,9 @@ class FeedingsController < ApplicationController
     if is_logged_in?
       @feeding = Feeding.find_by_id(params[:id])
       @parent = current_user
-      @children = ChildrenFeeding.find_by(feeding_id: @feeding.id)
+
+      @children = Child.find_by_id(@feeding.child_id)
+      
       erb :'/feedings/edit'
 
     else
@@ -22,9 +24,8 @@ class FeedingsController < ApplicationController
       @feedings.update(params[:feeding])
       @feedings.save
 
-      @children_feeding = ChildrenFeeding.find_by(feeding_id: @feedings.id)
 
-      redirect to "/children/#{@children_feeding.children_id}"
+      redirect to "/children/#{@feedings.child_id}"
     else
       redirect to '/login'
     end

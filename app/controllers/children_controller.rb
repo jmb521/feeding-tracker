@@ -11,7 +11,7 @@ class ChildrensController < ApplicationController
   post '/children/add_child' do
     if is_logged_in?
       @parent = current_user
-      @parent.children = Children.create(params[:children])
+      @parent.children << Child.create(params[:children])
 
 
 
@@ -22,7 +22,7 @@ class ChildrensController < ApplicationController
 
   get '/children/:id' do
     if is_logged_in?
-      @children = Children.find_by_id(params[:id])
+      @children = Child.find_by_id(params[:id])
       @parent = current_user
 
       erb :'/children/index'
@@ -33,7 +33,7 @@ class ChildrensController < ApplicationController
 
   post '/children/:id/add_feeding' do
     if is_logged_in?
-      @children = Children.find_by_id(params[:id])
+      @children = Child.find_by_id(params[:id])
       @children.feedings.create(params[:feeding])
       @children.save
       redirect to "/children/#{@children.id}"
@@ -46,7 +46,7 @@ class ChildrensController < ApplicationController
   get '/children/:id/edit' do
     if is_logged_in?
       @parent = current_user
-      @children = Children.find_by_id(params[:id])
+      @children = Child.find_by_id(params[:id])
       erb :'/children/edit'
     else
       redirect to '/login'
@@ -55,7 +55,7 @@ class ChildrensController < ApplicationController
 
   patch '/children/:id' do
     if is_logged_in?
-      @children = Children.find_by_id(params[:id])
+      @children = Child.find_by_id(params[:id])
       @children.update(params[:children])
       @children.save
       redirect to "/parents/#{current_user.id}"
@@ -67,7 +67,7 @@ class ChildrensController < ApplicationController
 
   delete '/children/:id/delete' do
     if is_logged_in?
-      @children = Children.find_by_id(params[:id])
+      @children = Child.find_by_id(params[:id])
 
       @children.delete
       @parent = current_user

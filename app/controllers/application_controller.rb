@@ -29,6 +29,7 @@ class ApplicationController < Sinatra::Base
     @parent = Parent.find_by(username: params[:username])
 
       if @parent && @parent.authenticate(params[:password])
+        
        session[:id] = @parent.id
        redirect to "/parents/#{@parent.id}"
 
