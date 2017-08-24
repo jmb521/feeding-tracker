@@ -4,6 +4,6 @@ class AddFeedingsTable < ActiveRecord::Migration[5.0]
       t.datetime :feeding
       t.integer :child_id
     end
-    change_column :children, :feedings, :string
+    # change_column :children, :feedings, :string
   end
 end

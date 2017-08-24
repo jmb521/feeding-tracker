@@ -1,6 +1,6 @@
 class CreateNewParentsTable < ActiveRecord::Migration[5.0]
   def change
-    drop_table :parents
+    # drop_table :parents
 
 
     create_table :parents do |t|

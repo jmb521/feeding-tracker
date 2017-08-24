@@ -12,17 +12,20 @@
 
 ActiveRecord::Schema.define(version: 20161108075300) do
 
-  create_table "children", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "children", id: :serial, force: :cascade do |t|
     t.string "child_name"
     t.integer "parent_id"
   end
 
-  create_table "feedings", force: :cascade do |t|
+  create_table "feedings", id: :serial, force: :cascade do |t|
     t.datetime "feedings"
     t.integer "child_id"
   end
 
-  create_table "parents", force: :cascade do |t|
+  create_table "parents", id: :serial, force: :cascade do |t|
     t.string "username"
     t.string "name"
     t.string "password_digest"
