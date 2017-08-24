@@ -13,13 +13,13 @@
 ActiveRecord::Schema.define(version: 20161108075300) do
 
   create_table "children", force: :cascade do |t|
-    t.string  "child_name"
+    t.string "child_name"
     t.integer "parent_id"
   end
 
   create_table "feedings", force: :cascade do |t|
     t.datetime "feedings"
-    t.integer  "child_id"
+    t.integer "child_id"
   end
 
   create_table "parents", force: :cascade do |t|
